@@ -100,7 +100,7 @@ def submit_data(request):
             # print(path.name)
             for dir in path.iterdir():
                 cats.append(dir.name)
-            file_path = os.getcwd() + '\\' + myzip.filename.split('.')[0]
+            file_path = os.getcwd() + os.path.sep + myzip.filename.split('.')[0]
             print(file_path)
             myzip.extractall(path=file_path)
 
@@ -112,7 +112,7 @@ def submit_data(request):
         # Now the Zip file has been extracted to the working directory and  file_path is the absolute path of the folder
         data = []
         for cat in cats:
-            sub_path = file_path + '\\' + cat
+            sub_path = file_path + os.path.sep + cat
             for root,directories,files in os.walk(sub_path):
                 for file in files:
                     abs_path = os.path.join(root,file)
@@ -498,7 +498,7 @@ def submit_test(request):
             # print(path.name)
             for dir in path.iterdir():
                 cats.append(dir.name)
-            file_path = os.getcwd() + '\\' + myzip.filename.split('.')[0]
+            file_path = os.getcwd() + os.path.sep + myzip.filename.split('.')[0]
             print(file_path)
             myzip.extractall(path=file_path)
 
@@ -506,7 +506,7 @@ def submit_test(request):
         data = []
         file_list = []
         for cat in cats:
-            sub_path = file_path + '\\' + cat
+            sub_path = file_path + os.path.sep + cat
             for root,directories,files in os.walk(sub_path):
                 for file in files:
                     abs_path = os.path.join(root,file)
