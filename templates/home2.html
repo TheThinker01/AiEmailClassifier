@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Email Classifier</title>
+    {% load static %}
+    <link type="text/css" rel="stylesheet" href="{% static 'main2.css' %}">
+</head>
+<body>
+<div class="main">
+    <div class="heading_class">
+        <h1 class="heading">AI Email Classifier</h1>
+    </div>
+    <div class="body_class clearfix">
+        <div class="left-col">
+            <div class="item">
+                <div class="label-text">Upload Train Dataset</div>
+                <div class="description-text">Upload the training dataset (.zip format) to train the model</div>
+                <form method="post" enctype="multipart/form-data"  action="{% url 'submit' %}">
+                        {% csrf_token %}
+                        <input type="file" name="train" required>
+                        <br>
+                        <button class="btn-submit" type="submit">Upload</button>
+                </form>
+            </div>
+            <div class="item">
+                <div class="label-text">Training of AI Classifier</div>
+                <div class="description-text">Train the model on the dataset you provided</div>
+                <a href="{% url 'trainml' %}"><button class="btn-submit" >Train</button></a>
+                {% if train_success %}<span class="ml_train_message">Done !</span>{% endif %}
+            </div>
+            <div class="item">
+                <div class="label-text">Upload Test Dataset</div>
+                <div class="description-text">Upload the testing dataset (.zip format) to classify the emails.</div>
+                <form method="post" enctype="multipart/form-data"  action="{% url 'submittest' %}">
+                        {% csrf_token %}
+                        <input type="file" name="test" required>
+                        <br>
+                        <button class="btn-submit" type="submit">Upload</button>
+                </form>
+            </div>
+        </div>
+        <div class="right-col2">
+
+            <div class="item">
+                <div class="label-text">Testing AI Classifier</div>
+                <div class="description-text">Test the model on the dataset you provided.</div>
+                <a href="{% url 'testml' %}"><button class="btn-submit">Test</button></a>
+{#                <span class="accuracy">Accuracy : </span><span class="accu-box"></span>#}
+                {% if test_done %}<span class="ml_test_message">Done ! Check Output Below</span>{% endif %}
+            </div>
+            <div class="itemlast">
+                <div class="label-text">Download Output File</div>
+                <div class="description-text">Download the classified output file</div>
+                <a href="{% url 'download' %}"><button class="btn-submit" >Download</button></a>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="main2">
+    <div class="body_class2">
+        <div class="heading_class2">
+            <h3 class="heading2">OUTPUT</h3>
+        </div>
+        <div class="inner_body">
+         {% if test_done %}
+             <table class="output_table" BORDER=0 CELLSPACING=0>
+             <thead class="output_table_head">
+                 <tr>
+                     <th class="thead1">Filename</th>
+                     <th class="thead2">Category</th>
+                 </tr>
+             </thead>
+             <tbody>
+            {% for row in output %}
+                <tr class="row_{{ forloop.counter0|divisibleby:"2" }}">
+                    <td class="col_0">
+                       {{ row.0 }}
+                    </td>
+                    <td class="col_1">
+                        {{ row.1 }}
+                    </td>
+                </tr>
+            {% endfor %}
+             </tbody>
+             </table>
+         {% else %}
+             <div class="label-text" style="text-align: center">
+             Run the Test to view results
+             </div>
+         {% endif %}
+        </div>
+    </div>
+</div>
+</body>
+</html>
