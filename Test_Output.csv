@@ -1,25 +1,31 @@
 Filename,Category
-ABC - CETV Request.msg,Retirements
-ABCChange of address.msg,Retirements
-ABCD QUERY.msg,Retirements
-ABCD XX TST12345678.msg,Retirements
-ABC_Change of address.msg,Retirements
-CETV Request_Mr XYZ .msg,Retirements
-Change of Address  ABC.msg,Transfers
-Change of address details.msg,Retirements
-Change of address for TEST pension.msg,Retirements
-Change of Address-ABCD.msg,Transfers
-Change of addresss.msg,Retirements
-Change of address_ABC.msg,Retirements
-Change of marital status - ABC - ZZ123123Z.msg,Transfers
-Change of name.msg,Transfers
-Change of personal details.msg,Transfers
+ABC - CETV Request.msg,Transfers
+ABCChange of address.msg,MDU
+ABCD QUERY.msg,Transfers
+ABCD XX TST12345678.msg,Transfers
+ABC_Change of address.msg,MDU
+CETV Request_Mr XYZ .msg,Transfers
+Change of Address  ABC.msg,MDU
+Change of address details.msg,Transfers
+Change of address for TEST pension.msg,MDU
+Change of Address-ABCD.msg,MDU
+Change of addresss.msg,MDU
+Change of address_ABC.msg,MDU
+Change of marital status - ABC - ZZ123123Z.msg,MDU
+Change of name.msg,MDU
+Change of personal details.msg,MDU
 DEF Retirement and Employee Scheme - ABC.msg,Transfers
-FW Early quotation.msg,Transfers
+FW Early quotation.msg,Retirements
 FW EMPLOYEE NO 123456.msg,Retirements
-FW Immediate Retirement Quote.msg,Transfers
-FW Pension .msg,Transfers
-FW Pension value.msg,Transfers
-FW Pension.msg,Transfers
+FW Immediate Retirement Quote.msg,Retirements
+FW Pension .msg,Retirements
+FW Pension value.msg,Retirements
+FW Pension.msg,Retirements
 FW Policy Ref 132456.msg,Retirements
-FW PRE-IDENTIFIED USER SUPPORT REQUEST 1.msg,Transfers
+FW PRE-IDENTIFIED USER SUPPORT REQUEST 1.msg,Retirements
+FW PRE-IDENTIFIED USER SUPPORT REQUEST 2.msg,Retirements
+FW PRE-IDENTIFIED USER SUPPORT REQUEST.msg,Retirements
+FW TST12345678.msg,Transfers
+Information Request - Letter of Authority attached (Ref TST12345678).msg,Transfers
+Letter of Authority - client ABCD.msg,Transfers
+LMNO request for a guaranteed CETV pack.msg,Transfers

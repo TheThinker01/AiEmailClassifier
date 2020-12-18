@@ -285,19 +285,19 @@ def trainml(request):
     except:
         return HttpResponse("<h1>FORBIDDEN!<h1><h2>You Need To Upload the Train Dataset first</h2>")
     else:
-        data['Category_Id'] = data['Category'].factorize()[0]
+        # data['Category_Id'] = data['Category'].factorize()[0]
+        #
+        # data['Lemma Message'] = data['Lemma Subject'].astype(str) + " " + data['Lemma Body'].astype(str)
+        df = data[['Category_id', 'LemmaConcatenated']]
 
-        data['Lemma Message'] = data['Lemma Subject'].astype(str) + " " + data['Lemma Body'].astype(str)
-        df = data[['Category_Id', 'Lemma Message']]
-
-        category_id_df = data[['Category', 'Category_Id']].drop_duplicates().sort_values('Category_Id')
+        category_id_df = data[['Category', 'Category_id']].drop_duplicates().sort_values('Category_id')
 
         """**Text Vectorization**"""
         global tfidf
         tfidf = TfidfVectorizer(sublinear_tf=True, min_df=5, norm='l2', encoding='latin-1', ngram_range=(1, 2),
                                 stop_words='english')
 
-        features = tfidf.fit_transform(df['Lemma Message']).toarray()
+        features = tfidf.fit_transform(df['LemmaConcatenated']).toarray()
 
         # save the tfidf model
         open_file = open(tfidf_file,'wb')
@@ -305,11 +305,11 @@ def trainml(request):
         open_file.close()
 
         # continue with everything
-        labels = df.Category_Id
+        labels = df.Category_id
 
         """**Train the Model**"""
-        model = RandomForestClassifier(random_state=0, n_estimators=1600, min_samples_split=20, min_samples_leaf=2,
-                                       max_features='sqrt', max_depth=15, bootstrap='True')
+        model = RandomForestClassifier(random_state=0, n_estimators=200, min_samples_split=2, min_samples_leaf=1,
+                                       max_features='auto', max_depth=105, bootstrap='False')
 
         # Split the Data
         X_train = features
