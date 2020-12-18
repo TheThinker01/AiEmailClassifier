@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from server import views
+from server import api_views as api
 from django.conf import  settings
 from django.conf.urls.static import static
 
@@ -29,7 +30,11 @@ urlpatterns = [
     path('testml', views.testml, name='testml'),
     path('testdl', views.testdl, name='testdl'),
     path('submittest', views.submit_test,name='submittest'),
-    path('download',views.download, name='download')
+    path('download',views.download, name='download'),
+
+    # API URL PATHS
+    path('api/single',api.single),
+    path('api/batch',api.batch)
 ]
 if settings.DEBUG:
     urlpatterns += static(
